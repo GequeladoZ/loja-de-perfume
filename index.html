@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Loja de Perfumes</title>
-  <link rel="stylesheet" href="style.css" />
+  style.css
 </head>
 <body>
-  <header>
-    <h1>🌸 Loja de Perfumes</h1>
-    <div id="cart">
-      🛒 Itens no carrinho: <span id="cart-count">0</span> |
-      Total: R$ <span id="cart-total">0.00</span>
-      <button id="clear-cart">Limpar Carrinho</button>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon">🌸</span>
+      <h1>Loja de Perfumes</h1>
+    </div>
+
+    <div class="cart-summary">
+      <p>
+        🛒 Itens no carrinho: <span id="cart-count">0</span> |
+        Total: R$ <span id="cart-total">0.00</span>
+      </p>
+      <button id="clear-cart" class="btn btn-danger">Limpar Carrinho</button>
     </div>
   </header>
 
-  <main>
-    <section id="products-container">
-      <!-- Produtos vão aparecer aqui via JavaScript -->
+  <main class="container">
+    <section id="products-container" class="products-grid">
+      <!-- Produtos renderizados via JavaScript -->
     </section>
   </main>
-  
-  <script src="script.js"></script>
+
+  <footer class="site-footer">
+    <small>© 2025 • Loja de Perfumes • Demo</small>
+  </footer>
+
+  script.js</script>
 </body>
 </html>
+
 
