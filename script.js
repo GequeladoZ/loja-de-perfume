@@ -1,5 +1,4 @@
 
-
 const products = [
   {
     id: 1,
@@ -40,69 +39,46 @@ const products = [
 
 let cart = [];
 
-
 function renderProducts() {
   const container = document.getElementById('products-container');
   container.innerHTML = '';
+  products.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'product';
+    div.innerHTML = `
+      ${p.img}
+      <h2>${p.name}</h2>
+      <p>${p.desc}</p>
+      <div class="price">R$ ${p.price.toFixed(2)}</div>
+      <button class="btn btn-primary" data-id="${p.id}">Adicionar ao carrinho</button>
+    `;
+    container.appendChild(div);
+  });
 
-  products.forEach((p) => {
-    const card = document.createElement('article');
-    card.className = 'product';
-
-
-    const img = document.createElement('img');
-    img.src = p.img;
-    img.alt = p.name;
-
-    const title = document.createElement('h2');
-    title.textContent = p.name;
-
-    const desc = document.createElement('p');
-    desc.textContent = p.desc;
-
-    const price = document.createElement('div');
-    price.className = 'price';
-    price.textContent = `R$ ${p.price.toFixed(2)}`;
-
-    const btn = document.createElement('button');
-    btn.className = 'btn btn-primary';
-    btn.textContent = 'Adicionar ao carrinho';
-    btn.dataset.id = p.id;
-
-    btn.addEventListener('click', () => addToCart(p.id));
-
-   
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(desc);
-    card.appendChild(price);
-    card.appendChild(btn);
-
-    container.appendChild(card);
+  container.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = parseInt(btn.dataset.id);
+      addToCart(id);
+    });
   });
 }
-
 
 function updateCartDisplay() {
   const countSpan = document.getElementById('cart-count');
   const totalSpan = document.getElementById('cart-total');
   let total = 0;
   let items = 0;
-
-  cart.forEach((item) => {
+  cart.forEach(item => {
     items += item.qty;
     total += item.qty * item.price;
   });
-
   countSpan.textContent = items;
   totalSpan.textContent = total.toFixed(2);
 }
 
-
 function addToCart(id) {
-  const prod = products.find((p) => p.id === id);
-  const existing = cart.find((c) => c.id === id);
-
+  const prod = products.find(p => p.id === id);
+  const existing = cart.find(c => c.id === id);
   if (existing) {
     existing.qty++;
   } else {
@@ -111,17 +87,14 @@ function addToCart(id) {
   updateCartDisplay();
 }
 
-
 function clearCart() {
   cart = [];
   updateCartDisplay();
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   updateCartDisplay();
-
   const clearBtn = document.getElementById('clear-cart');
   if (clearBtn) {
     clearBtn.addEventListener('click', clearCart);
