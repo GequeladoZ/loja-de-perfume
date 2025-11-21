@@ -1,41 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Loja de Perfumes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
- 
-  <link rel="stylesheet" href="style.css">
+    <title>Loja de Perfumes</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header class="site-header">
+<header class="site-header">
     <div class="brand">
-      <span class="brand-icon">🌸</span>
-       <h1>Loja de Perfumes</h1>
+        <span class="brand-icon">🌸</span>
+        <h1>Loja de Perfumes</h1>
     </div>
 
     <div class="cart-summary">
-      <p>
-        🛒 Itens no carrinho: <span id="cart-count">0</span>
-        Total: R$ <span id="cart-total">0.00</span>
-      </p>
-      <button id="clear-cart" class="btn btn-danger">Limpar Carrinho</button>
+        <p>
+            🛒 Itens: <span id="cart-count">0</span>  
+            | Total: R$ <span id="cart-total">0.00</span>
+        </p>
+
+        <button id="clear-cart" class="btn btn-danger">Limpar Carrinho</button>
+        <button id="checkout" class="btn btn-primary">Finalizar Compra</button>
     </div>
-  </header>
+</header>
 
-  <main class="container">
-    <section id="products-container" class="products-grid">
+<main class="container">
+    <section class="products-container">
+
+        
+        <div class="product-card">
+            <img src="img/luna-intense.jpg" class="product-img" alt="Luna Intense">
+            <h3>Luna Intense</h3>
+            <p class="desc">Perfume feminino floral frutado, ideal para noites especiais.</p>
+            <p class="price">R$ 239.90</p>
+            <button class="btn add-to-cart" data-name="Luna Intense" data-price="239.90">Adicionar ao carrinho</button>
+        </div>
+
+        
+        <div class="product-card">
+            <img src="img/essencial-feminino.jpg" class="product-img" alt="Essencial Feminino">
+            <h3>Essencial Feminino</h3>
+            <p class="desc">Notas de jasmim, violeta e pitanga. Sofisticação em cada gota.</p>
+            <p class="price">R$ 199.90</p>
+            <button class="btn add-to-cart" data-name="Essencial Feminino" data-price="199.90">Adicionar ao carrinho</button>
+        </div>
+
+       
+        <div class="product-card">
+            <img src="img/kaiak-feminino.jpg" class="product-img" alt="Kaiak Feminino">
+            <h3>Kaiak Feminino</h3>
+            <p class="desc">Aroma fresco, vibrante, cítrico e floral.</p>
+            <p class="price">R$ 179.90</p>
+            <button class="btn add-to-cart" data-name="Kaiak Feminino" data-price="179.90">Adicionar ao carrinho</button>
+        </div>
+
+       
+        <div class="product-card">
+            <img src="img/ilia-deo.jpg" class="product-img" alt="Ilía Deo Parfum">
+            <h3>Ilía Deo Parfum</h3>
+            <p class="desc">Frutas vermelhas, musk e baunilha suave.</p>
+            <p class="price">R$ 209.90</p>
+            <button class="btn add-to-cart" data-name="Ilía Deo Parfum" data-price="209.90">Adicionar ao carrinho</button>
+        </div>
+
+        
+        <div class="product-card">
+            <img src="img/kriska-drama.jpg" class="product-img" alt="Kriska Drama">
+            <h3>Kriska Drama</h3>
+            <p class="desc">Doce, marcante, com baunilha e notas intensas.</p>
+            <p class="price">R$ 149.90</p>
+            <button class="btn add-to-cart" data-name="Kriska Drama" data-price="149.90">Adicionar ao carrinho</button>
+        </div>
+
     </section>
-  </main>
+</main>
 
-  <footer class="site-footer">
+<footer class="site-footer">
     <small>© 2025 • Loja de Perfumes • Demo</small>
-  </footer>
+</footer>
 
-  <!-- JS CORRETO -->
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
