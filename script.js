@@ -1,121 +1,43 @@
+let cartCount = 0;
+let cartTotal = 0;
 
-const products = [
-  {
-    id: 1,
-    name: 'Luna Intense',
-    desc: 'Perfume feminino floral frutado, ideal para noites especiais.',
-    price: 239.90,
-    img: 'https://imgnatura.vtexassets.com/arquivos/ids/166588-800-auto?v=637861212992130000&width=800&height=auto&aspect=true'
-  },
-  {
-    id: 2,
-    name: 'Essencial Feminino',
-    desc: 'Notas de jasmim, violeta e pitanga. Sofisticação em cada gota.',
-    price: 199.90,
-    img: 'https://imgnatura.vtexassets.com/arquivos/ids/167179-800-auto?v=637867110224200000&width=800&height=auto&aspect=true'
-  },
-  {
-    id: 3,
-    name: 'Kaiak Feminino',
-    desc: 'Aroma fresco, vibrante, cítrico e floral.',
-    price: 179.90,
-    img: 'https://imgnatura.vtexassets.com/arquivos/ids/167077-800-auto?v=637864265960130000&width=800&height=auto&aspect=true'
-  },
-  {
-    id: 4,
-    name: 'Ilía Deo Parfum',
-    desc: 'Frutas vermelhas, musk e baunilha suave.',
-    price: 209.90,
-    img: 'https://imgnatura.vtexassets.com/arquivos/ids/165673-800-auto?v=637852999823500000&width=800&height=auto&aspect=true'
-  },
-  {
-    id: 5,
-    name: 'Kriska Drama',
-    desc: 'Doce, marcante, com baunilha e notas intensas.',
-    price: 149.90,
-    img: 'https://imgnatura.vtexassets.com/arquivos/ids/164813-800-auto?v=637834253530370000&width=800&height=auto&aspect=true'
-  }
-];
 
-let cart = [];
-
-function renderProducts() {
-  const container = document.getElementById('products-container');
-  container.innerHTML = '';
-
-  products.forEach((p) => {
-    const card = document.createElement('article');
-    card.className = 'product';
-
-    const img = document.createElement('img');
-    img.src = p.img;
-    img.alt = p.name;
-
-    const title = document.createElement('h2');
-    title.textContent = p.name;
-
-    const desc = document.createElement('p');
-    desc.textContent = p.desc;
-
-    const price = document.createElement('div');
-    price.className = 'price';
-    price.textContent = `R$ ${p.price.toFixed(2)}`;
-
-    const btn = document.createElement('button');
-    btn.className = 'btn btn-primary';
-    btn.textContent = 'Adicionar ao carrinho';
-    btn.dataset.id = p.id;
-
-    btn.addEventListener('click', () => addToCart(p.id));
-
-    card.appendChild(img);
-    card.appendChild(title);
-    card.appendChild(desc);
-    card.appendChild(price);
-    card.appendChild(btn);
-
-    container.appendChild(card);
-  });
+function updateCart() {
+    document.getElementById("cart-count").textContent = cartCount;
+    document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
 }
 
-function updateCartDisplay() {
-  const countSpan = document.getElementById('cart-count');
-  const totalSpan = document.getElementById('cart-total');
-  let total = 0;
-  let items = 0;
 
-  cart.forEach((item) => {
-    items += item.qty;
-    total += item.qty * item.price;
-  });
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const price = parseFloat(btn.dataset.price);
 
-  countSpan.textContent = items;
-  totalSpan.textContent = total.toFixed(2);
-}
+        cartCount++;
+        cartTotal += price;
 
-function addToCart(id) {
-  const prod = products.find((p) => p.id === id);
-  const existing = cart.find((c) => c.id === id);
+        updateCart();
+    });
+});
 
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ id, name: prod.name, price: prod.price, qty: 1 });
-  }
-  updateCartDisplay();
-}
 
-function clearCart() {
-  cart = [];
-  updateCartDisplay();
-}
+document.getElementById("clear-cart").addEventListener("click", () => {
+    cartCount = 0;
+    cartTotal = 0;
+    updateCart();
+});
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-  updateCartDisplay();
 
-  const clearBtn = document.getElementById('clear-cart');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', clearCart);
-  }
+document.getElementById("checkout").addEventListener("click", () => {
+    if (cartCount === 0) {
+        alert("Seu carrinho está vazio.");
+        return;
+    }
+
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("checkout-total").textContent = cartTotal.toFixed(2);
+});
+
+
+document.getElementById("close-modal").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
 });
