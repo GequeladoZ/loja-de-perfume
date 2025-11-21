@@ -6,14 +6,13 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   background: #f7faf7;
   color: #212121;
   line-height: 1.5;
@@ -147,7 +146,7 @@ body {
   filter: brightness(1.05);
 }
 
-
+/* Rodapé */
 .site-footer {
   text-align: center;
   color: #666;
